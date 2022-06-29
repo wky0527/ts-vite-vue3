@@ -1,6 +1,6 @@
 /*rem等比适配文件*/
 //基准大小
-const baseSize = 75
+const baseSize = 37.5
 //设置rem函数
 function setRem() {
     //当前页面宽度

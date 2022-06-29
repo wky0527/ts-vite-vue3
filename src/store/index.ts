@@ -1,8 +1,8 @@
-import Vuex from 'vuex';
-import {homeStore} from "@/store/modules/home/index";
-let storeModules = Object.assign({},homeStore,{
-    modules: {
-
-    }
-})
-export default new Vuex.Store(storeModules)
+import {createPinia} from "pinia";
+import piniaPluginPersist from 'pinia-plugin-persist'; //数据持久化功能
+ const store = createPinia();
+export function setupStore(app){
+    app.use(store)
+}
+store.use(piniaPluginPersist)
+export {store}

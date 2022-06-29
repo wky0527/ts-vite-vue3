@@ -12,6 +12,8 @@
     "axios": "^0.27.2",
     "js-cookie": "^3.0.1",
     "mockjs": "^1.1.0",
+    "pinia": "^2.0.0-rc.10",
+    "pinia-plugin-persist": "^1.0.0",
     "postcss-pxtorem": "^6.0.0",
     "qs": "^6.10.5",
     "vant": "^3.5.1",

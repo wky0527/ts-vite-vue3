@@ -26,15 +26,37 @@
 
 </template>
 <script lang="ts" setup>
-import {onMounted} from "vue";
 import {reactive} from "vue";
-
+import {useUserState} from "@/store/modules/user";
+import { useRouter } from 'vue-router'
+interface ILogin {
+  username: string,
+  password: string
+}
 const loginForm = reactive({
   username: '',
   password: ''
 })
-
-const onSubmit = (values) =>{
-  console.log('submit',values)
+const router = useRouter();
+const onSubmit = () =>{
+  const store = useUserState()
+  //$action会先于actions函数调用之前执行 相当于watch一个监听器
+  store.$onAction(({
+                     name,//某个action函数名字
+                     store,//当前仓库实例store
+                     args,//actions中被调用函数的实参，数组类型
+                     after,//钩子函数，promise成功的返回值
+                     onError//promise失败的返回值
+  }) => {
+    if(name === "login"){
+      after((result)=>{
+        router.push({path: '/'})
+      })
+    }
+    onError ((error) => {
+      console.log(error)
+    })
+  })
+  store.login(loginForm)
 }
 </script>
